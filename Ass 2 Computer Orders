@@ -65,12 +65,12 @@ Desk {
         }
     }
 
-    // Method to calculate drawer cost
+    //  calculate drawer cost
     private double calculateDrawerCost() {
         return numberOfDrawers * 30; // $30 per drawer
     }
 
-    public static void main(String[] args) {
+    public static (String[] args) {
         // Create instances of Desk with specified values
         Desk desk1 = new Desk(90, 90, "Mahogany", 2); // Length: 90 cm, Width: 90 cm, Wood: Mahogany, Drawers: 2
         Desk desk2 = new Desk(50, 45, "Oak", 3);      // Length: 50 cm, Width: 45 cm, Wood: Oak, Drawers: 3
@@ -82,7 +82,7 @@ Desk {
         printDeskDetails(desk3);
     }
 
-    // Method to print desk details
+    // print desk details
     private static void printDeskDetails(Desk desk) {
         System.out.println("Desk:");
         System.out.println("Length: " + desk.getLength() + " cm");
