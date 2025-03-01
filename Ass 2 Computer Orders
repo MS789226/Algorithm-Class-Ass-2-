@@ -1,0 +1,95 @@
+Computer Orders
+
+Desk {
+    private double length; // in centimeters
+    private double width; // in centimeters
+    private String woodType; // type of wood
+    private int numberOfDrawers; // number of drawers
+
+    // Constructor
+    public Desk(double length, double width, String woodType, int numberOfDrawers) {
+        this.length = length;
+        this.width = width;
+        this.woodType = woodType;
+        this.numberOfDrawers = numberOfDrawers;
+    }
+
+    // Getters
+    public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public String getWoodType() {
+        return woodType;
+    }
+
+    public int getNumberOfDrawers() {
+        return numberOfDrawers;
+    }
+
+    // Method to calculate the total price
+    public double calculateTotalPrice() {
+        double basePrice = 200; // base price
+        double surfaceAreaCost = calculateSurfaceAreaCost();
+        double woodCost = calculateWoodCost();
+        double drawerCost = calculateDrawerCost();
+
+        return basePrice + surfaceAreaCost + woodCost + drawerCost;
+    }
+
+    // Method to calculate additional cost based on surface area
+    private double calculateSurfaceAreaCost() {
+        // Convert length and width to inches
+        double lengthInInches = length / 2.54; // 1 inch = 2.54 cm
+        double widthInInches = width / 2.54; // 1 inch = 2.54 cm
+        double surfaceArea = lengthInInches * widthInInches; // surface area in square inches
+
+        // Add cost for surface area over 750 square inches
+        return (surfaceArea > 750) ? 50 : 0;
+    }
+
+    // Method to calculate wood cost
+    private double calculateWoodCost() {
+        switch (woodType.toLowerCase()) {
+            case "mahogany":
+                return 150; // add $150 for mahogany
+            case "oak":
+                return 125; // add $125 for oak
+            case "pine":
+            default:
+                return 0; // no additional cost for pine
+        }
+    }
+
+    // Method to calculate drawer cost
+    private double calculateDrawerCost() {
+        return numberOfDrawers * 30; // $30 per drawer
+    }
+
+    public static void main(String[] args) {
+        // Create instances of Desk with specified values
+        Desk desk1 = new Desk(90, 90, "Mahogany", 2); // Length: 90 cm, Width: 90 cm, Wood: Mahogany, Drawers: 2
+        Desk desk2 = new Desk(50, 45, "Oak", 3);      // Length: 50 cm, Width: 45 cm, Wood: Oak, Drawers: 3
+        Desk desk3 = new Desk(75, 68, "Pine", 1);     // Length: 75 cm, Width: 68 cm, Wood: Pine, Drawers: 1
+
+        // Print the details and prices of the desks
+        printDeskDetails(desk1);
+        printDeskDetails(desk2);
+        printDeskDetails(desk3);
+    }
+
+    // Method to print desk details
+    private static void printDeskDetails(Desk desk) {
+        System.out.println("Desk:");
+        System.out.println("Length: " + desk.getLength() + " cm");
+        System.out.println("Width: " + desk.getWidth() + " cm");
+        System.out.println("Type of wood: " + desk.getWoodType());
+        System.out.println("Number of drawers: " + desk.getNumberOfDrawers());
+        System.out.println("Total Price: $" + desk.calculateTotalPrice());
+        System.out.println();
+    }
+}
